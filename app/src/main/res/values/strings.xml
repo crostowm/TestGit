@@ -11,4 +11,19 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="manager_view_button_description">Toggle Manager View</string>
     <string name="team_view_button_description">View Team</string>
+
+    <string-array name="employee_views_array">
+        <item>Tasks</item>
+        <item>Execution Chart</item>
+    </string-array>
+
+    <string-array name="manager_views_array">
+        <item>AM PunchList</item>
+        <item>Prep List</item>
+        <item>Tasks</item>
+        <item>AM Bread Math</item>
+        <item>PM PunchList</item>
+        <item>PM Bread Math</item>
+    </string-array>
+    <string name="title_activity_adapter">AdapterActivity</string>
 </resources>
