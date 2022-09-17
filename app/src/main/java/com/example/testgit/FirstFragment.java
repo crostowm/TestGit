@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    public static ArrayList<View> empViews, mgrViews;
+    private ArrayList<View> empViews, mgrViews;
     private ArrayAdapter<CharSequence> employeeAdapter, managerAdapter;
     private Spinner leftSpinner, rightSpinner;
     @Override
@@ -38,7 +38,7 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        empViews = new ArrayList<View>();
+        /*empViews = new ArrayList<View>();
         empViews.add(view.findViewById(R.id.empTaskView));
         empViews.add(view.findViewById(R.id.empExecutionView));
 
@@ -61,7 +61,7 @@ public class FirstFragment extends Fragment {
         managerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         leftSpinner = view.findViewById(R.id.leftViewSpinner);
-        leftSpinner.setAdapter(managerAdapter);
+        leftSpinner.setAdapter(managerAdapter);*/
         /*leftSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

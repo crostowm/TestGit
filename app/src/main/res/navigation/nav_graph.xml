@@ -25,4 +25,9 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.testgit.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
 </navigation>

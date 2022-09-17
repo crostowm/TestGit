@@ -17,12 +17,27 @@ import com.example.testgit.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    public static ArrayList<View> empViews, mgrViews;
+    private ArrayAdapter<CharSequence> employeeAdapter, managerAdapter;
+    private Spinner leftSpinner, rightSpinner;
+    private ViewGroup leftViews;
+
+    String[] courses = { "C", "Data structures",
+            "Interview prep", "Algorithms",
+            "DSA with java", "OS" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +58,32 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        empViews = new ArrayList<View>();
+        empViews.add(findViewById(R.id.empTaskView));
+        empViews.add(findViewById(R.id.empExecutionView));
+
+        employeeAdapter = ArrayAdapter.createFromResource(this, R.array.employee_views_array, android.R.layout.simple_spinner_item);
+
+        mgrViews = new ArrayList<View>();
+        mgrViews.add(findViewById(R.id.mgrAMPunchList));
+        mgrViews.add(findViewById(R.id.mgrPrepList));
+        mgrViews.add(findViewById(R.id.mgrTaskView));
+        mgrViews.add(findViewById(R.id.mgrAMBreadMathView));
+        mgrViews.add(findViewById(R.id.mgrPMBreadMathView));
+        mgrViews.add(findViewById(R.id.mgrPMPunchList));
+
+        leftViews = findViewById(R.id.leftView);
+        //leftViews.addView(child);
+        //leftViews.removeView(child);
+        leftViews.removeAllViews();
+
+        managerAdapter = ArrayAdapter.createFromResource(this, R.array.manager_views_array, android.R.layout.simple_spinner_item);
+        managerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        leftSpinner = findViewById(R.id.leftViewSpinner);
+        leftSpinner.setOnItemSelectedListener(this);
+        leftSpinner.setAdapter(managerAdapter);
     }
 
     @Override
@@ -72,5 +113,58 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        /*String[] array = getResources().getStringArray(R.array.manager_views_array);
+        int pos = -1;
+        for(int ii = 0; ii < array.length; ii++) {
+            if(array[ii].equals(adapterView.getItemAtPosition(position).toString()))
+            pos = ii;
+        }
+        if(pos != -1) {*/
+        /*try {
+            if (adapterView.getId() == R.id.leftViewSpinner) {
+                leftViews.removeAllViews();
+                switch (adapterView.getItemAtPosition(position).toString().trim()) {
+                    case "AM PunchList":
+                        System.out.println(adapterView.getItemAtPosition(position).toString().trim() + "    " + adapterView.getId() + "   " + R.id.leftViewSpinner);
+                        leftViews.addView(findViewById(R.id.mgrAMPunchList));
+                        break;
+                    case "Prep List":
+                        leftViews.addView(findViewById(R.id.mgrPrepList));
+                        break;
+                    case "Tasks":
+                        leftViews.addView(findViewById(R.id.mgrTaskView));
+                        break;
+                    case "AM Bread Math":
+                        leftViews.addView(findViewById(R.id.mgrAMBreadMathView));
+                        break;
+                    case "PM PunchList":
+                        leftViews.addView(findViewById(R.id.mgrPMPunchList));
+                        break;
+                    case "PM Bread Math":
+                        leftViews.addView(findViewById(R.id.mgrPMBreadMathView));
+                        break;
+                }
+                //leftViews.addView(mgrViews.get(pos));
+            }
+        }
+        catch (IllegalArgumentException iae)
+        {
+
+        }*/
+
+
+        Toast.makeText(getApplicationContext(),
+                        adapterView.getItemAtPosition(position).toString(),
+                        Toast.LENGTH_LONG)
+                .show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
